@@ -2,32 +2,35 @@
 
 from deep_translator import GoogleTranslator
 
+def translate(text, language):
+    languages = {
+        "spanish": "es",
+        "hindi": "hi"
+    }
 
-def translate_to_spanish(text: str) -> str:
-    """Translate English text to Spanish."""
-    return GoogleTranslator(source="en", target="es").translate(text)
+    if language.lower() not in languages:
+        return "Unsupported language."
 
-
-def main():
-    print("=== English to Spanish Translator ===")
-    print("Type 'quit' or 'exit' to stop.\n")
-
-    while True:
-        text = input("Enter English text: ").strip()
-
-        if text.lower() in ("quit", "exit"):
-            print("Goodbye!")
-            break
-
-        if not text:
-            continue
-
-        try:
-            translated = translate_to_spanish(text)
-            print(f"Spanish: {translated}\n")
-        except Exception as e:
-            print(f"Error translating text: {e}\n")
+    return GoogleTranslator(
+        source="en",
+        target=languages[language.lower()]
+    ).translate(text)
 
 
 if __name__ == "__main__":
-    main()
+    text = input("Enter English text: ")
+
+    print("\nChoose a language:")
+    print("1. Spanish")
+    print("2. Hindi")
+
+    choice = input("Enter choice (1 or 2): ")
+
+    if choice == "1":
+        result = translate(text, "spanish")
+        print("\nSpanish:", result)
+    elif choice == "2":
+        result = translate(text, "hindi")
+        print("\nHindi:", result)
+    else:
+        print("Invalid choice.")
