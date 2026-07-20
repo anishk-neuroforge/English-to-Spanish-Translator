@@ -1,9 +1,4 @@
-"""
-Simple English to Spanish Translator
---------------------------------------
-Requires: deep-translator
-Install with: pip install deep-translator
-"""
+
 
 from deep_translator import GoogleTranslator
 
